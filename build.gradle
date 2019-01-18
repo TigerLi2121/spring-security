@@ -1,16 +1,9 @@
 buildscript {
     repositories {
-        maven {
-            url 'http://maven.aliyun.com/nexus/content/groups/public/'
-        }
-    }
-    ext {
-        spirngBootVersion = '2.1.2.RELEASE'
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     }
     dependencies {
-        classpath(
-                "org.springframework.boot:spring-boot-gradle-plugin:${spirngBootVersion}",
-        )
+        classpath( 'org.springframework.boot:spring-boot-gradle-plugin:2.1.2.RELEASE' )
     }
 }
 
@@ -25,22 +18,11 @@ allprojects {
     sourceCompatibility = 1.8
 
     repositories {
-        maven {
-            url 'http://maven.aliyun.com/nexus/content/groups/public/'
-        }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://repo.spring.io/milestone' }
     }
 
-    dependencies {
-        compile(
-                'org.projectlombok:lombok',
-                'org.springframework.boot:spring-boot-starter-log4j2'
-        )
-        runtime('org.springframework.boot:spring-boot-devtools')
-        testCompile "org.springframework.boot:spring-boot-starter-test:${spirngBootVersion}"
-    }
-
-    configurations {
-        providedRuntime
-        all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    dependencyManagement {
+        imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Greenwich.RC2' }
     }
 }
