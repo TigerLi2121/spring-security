@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+    }
+    ext {
+        spirngBootVersion = '2.1.2.RELEASE'
+    }
+    dependencies {
+        classpath(
+                "org.springframework.boot:spring-boot-gradle-plugin:${spirngBootVersion}",
+        )
+    }
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'idea'
+
+    group 'com.mm'
+    version '1.0-SNAPSHOT'
+    sourceCompatibility = 1.8
+
+    repositories {
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+    }
+
+    dependencies {
+        compile(
+                'org.projectlombok:lombok',
+                'org.springframework.boot:spring-boot-starter-log4j2'
+        )
+        runtime('org.springframework.boot:spring-boot-devtools')
+        testCompile "org.springframework.boot:spring-boot-starter-test:${spirngBootVersion}"
+    }
+
+    configurations {
+        providedRuntime
+        all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+}

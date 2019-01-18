@@ -1,0 +1,6 @@
+rootProject.name = 'spring-security'
+include 'security-core'
+include 'security-web'
+include 'security-api'
+include 'security-demo'
+
