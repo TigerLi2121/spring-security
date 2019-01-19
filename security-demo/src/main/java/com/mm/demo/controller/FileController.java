@@ -1,6 +1,6 @@
-package com.mm.controller;
+package com.mm.demo.controller;
 
-import com.mm.entity.FileInfo;
+import com.mm.demo.entity.FileInfo;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

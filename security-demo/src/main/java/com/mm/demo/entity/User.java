@@ -1,4 +1,4 @@
-package com.mm.entity;
+package com.mm.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;

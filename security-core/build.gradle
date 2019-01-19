@@ -9,4 +9,5 @@ dependencies {
             'mysql:mysql-connector-java',
             'org.apache.commons:commons-lang3'
     )
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 }
