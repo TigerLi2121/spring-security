@@ -1,4 +1,8 @@
 dependencies {
-    compile ('org.springframework.boot:spring-boot-starter-web')
+    compile (
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-test',
+            'org.projectlombok:lombok'
+    )
     compile project(':security-web')
 }
