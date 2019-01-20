@@ -1,6 +1,8 @@
 package com.mm.web.config;
 
 import com.mm.core.properties.SecurityProperties;
+import com.mm.web.auth.AuthFailHandler;
+import com.mm.web.auth.AuthSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +20,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityProperties securityProperties;
 
+    @Autowired
+    private AuthSuccessHandler authSuccessHandler;
+
+    @Autowired
+    private AuthFailHandler authFailHandler;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -28,6 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/auth/require")
                 .loginProcessingUrl("/auth/form")
+                .successHandler(authSuccessHandler)
+                .failureHandler(authFailHandler)
                 //http.httpBasic()
                 .and()
                 .authorizeRequests()
